@@ -20,7 +20,7 @@ export class ProtectedRoute extends Component {
   render () {
     const { props } = this
     const { component: Component, isAllowed, ...rest } = props
-    console.log(props)
+
     return (
       <Route {...rest} render={props => (
         isAllowed ? (

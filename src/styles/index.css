@@ -1,0 +1,17 @@
+#root {
+    height: 100%;
+}
+
+.login-form-row {
+    height: 100%;
+}
+
+.login-form-row .login-form {
+    max-width: 300px;
+}
+.login-form-row .login-form-forgot {
+    float: right;
+}
+.login-form-row .login-form-button {
+    width: 100%;
+}
