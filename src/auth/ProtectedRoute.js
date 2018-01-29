@@ -19,17 +19,17 @@ import { Route, Redirect } from 'react-router-dom'
 export class ProtectedRoute extends Component {
   render () {
     const { props } = this
-    const { component: Component, isAllowed, ...rest } = props
+    const { component: Component, isAuthorized, ...rest } = props
 
     return (
       <Route {...rest} render={props => (
-        isAllowed ? (
+        isAuthorized ? (
           <Component {...props}/>
         ) : (
           <Redirect to={{
             pathname: '/login',
             state: { 
-              from: props.location 
+              from: props.path 
             }
           }}/>
         )

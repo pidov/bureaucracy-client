@@ -12,7 +12,7 @@ class LoginForm extends Component {
     });
   }
   render() {
-    const { getFieldDecorator } = this.props.form;
+    const { getFieldDecorator } = this.props.form
     return (
       <Row type="flex" align="middle" justify="space-around" className="login-form-row">
         <Col span={6}>
