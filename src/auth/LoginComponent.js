@@ -15,7 +15,7 @@ class LoginForm extends Component {
     const { getFieldDecorator } = this.props.form
     return (
       <Row type="flex" align="middle" justify="space-around" className="login-form-row">
-        <Col span={6}>
+        <Col span={4}>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <FormItem>
               {getFieldDecorator('email', {
@@ -32,13 +32,13 @@ class LoginForm extends Component {
               )}
             </FormItem>
             <FormItem>
-              {getFieldDecorator('remember', {
+              {/* {getFieldDecorator('remember', {
                 valuePropName: 'checked',
                 initialValue: true,
               })(
                 <Checkbox>Remember me</Checkbox>
               )}
-              <a className="login-form-forgot" href="">Forgot password</a>
+              <a className="login-form-forgot" href="">Forgot password</a> */}
               <Button type="primary" htmlType="submit" className="login-form-button">
                 Log in
               </Button>
