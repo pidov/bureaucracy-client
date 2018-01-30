@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { ProtectedRoute, LoginComponent } from './auth/auth'
-import { BrowserRouter as Router, Route, Redirect, Link, Switch} from 'react-router-dom'
+import { ProtectedRoute, LoginPage } from './auth'
+import { BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom'
 
 import './styles/index.css'
 import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
@@ -17,7 +17,7 @@ class AuthExample extends Component  {
           <Route exact path="/">
             <Redirect to="/dashboard"/>
           </Route>
-          <Route path="/login" component={LoginComponent}/>
+          <Route path="/login" component={LoginPage}/>
           <ProtectedRoute path="/dashboard" component={Dashboard}/>
           <ProtectedRoute path="/protected" component={Protected}/>
           <Route component={NotFound} /> 

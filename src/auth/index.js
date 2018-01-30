@@ -1,2 +1,2 @@
 export { ProtectedRoute } from './ProtectedRoute'
-export { LoginComponent } from './LoginComponent'
+export { LoginPage } from './LoginPage'
