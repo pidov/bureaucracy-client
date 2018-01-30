@@ -22,21 +22,21 @@ class LoginFormNormal extends Component {
           <Form onSubmit={this.handleSubmit} className="login-form">
             <FormItem>
               {getFieldDecorator('email', {
-                rules: [{ required: true, message: 'Please enter your email!' }],
+                rules: [{ required: true, message: 'Задължително поле!' }],
               })(
-                <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Email" />
+                <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Email" autoComplete="username"/>
               )}
             </FormItem>
             <FormItem>
               {getFieldDecorator('password', {
-                rules: [{ required: true, message: 'Please enter your Password!' }],
+                rules: [{ required: true, message: 'Задължително поле!' }],
               })(
-                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" autoComplete="current-password" />
               )}
             </FormItem>
             <FormItem>
               <Button type="primary" htmlType="submit" className="login-form-button">
-                Log in
+                Вход
               </Button>
             </FormItem>
           </Form>
