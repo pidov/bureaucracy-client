@@ -45,5 +45,9 @@ export const selectors = {
   isAuthorized: createSelector(
     authSelector,
     auth => auth.isAuthenticated
+  ),
+  loginFormError: createSelector(
+    authSelector,
+    auth => auth.errorMessage
   )
 }

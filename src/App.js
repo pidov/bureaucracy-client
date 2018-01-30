@@ -5,6 +5,7 @@ import createHistory from 'history/createBrowserHistory'
 import { ConnectedRouter } from 'react-router-redux'
 
 import { ProtectedRoute, LoginPage } from './auth'
+import { Dashboard } from './Dashboard'
 import configureStore from './store/createStore'
 
 import './styles/index.css'
@@ -13,7 +14,6 @@ import 'antd/dist/antd.css'  // or 'antd/dist/antd.less'
 const history = createHistory()
 const store = configureStore(history)
 
-const Dashboard = () => 'Dashboard'
 const NotFound = () => 'NotFound'
 
 class AuthExample extends Component {

@@ -7,12 +7,12 @@ import { LoginForm } from './LoginForm'
 
 export class LoginPageNormal extends Component {
   render () {
-    const { isAuthorized } = this.props
+    const { isAuthorized, loginFormError } = this.props
     const { from } = this.props.location.state || { from: { pathname: '/' } }
-    
+
     return (
       <div style={{height: '100%'}}>
-        <LoginForm onSubmit={this.props.LOGIN} />
+        <LoginForm onSubmit={this.props.LOGIN} formError={loginFormError} />
         {isAuthorized && <Redirect to={from} />}
       </div>
     )
@@ -21,7 +21,8 @@ export class LoginPageNormal extends Component {
 
 export const LoginPage = connect(
   state => ({
-    isAuthorized: selectors.isAuthorized(state)
+    isAuthorized: selectors.isAuthorized(state),
+    loginFormError: selectors.loginFormError(state)
   }),
   dispatch => ({
     ...bindActionCreators(actions, dispatch)
