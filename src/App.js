@@ -14,7 +14,6 @@ const history = createHistory()
 const store = configureStore(history)
 
 const Dashboard = () => 'Dashboard'
-const Protected = () => 'Protected'
 const NotFound = () => 'NotFound'
 
 class AuthExample extends Component {
@@ -23,12 +22,11 @@ class AuthExample extends Component {
       <Provider store={store}>
         <ConnectedRouter history={history} >
           <Switch>
-            <Route exact path="/">
-              <Redirect to="/dashboard" />
+            <Route exact path='/'>
+              <Redirect to='/dashboard' />
             </Route>
-            <Route path="/login" component={LoginPage} />
-            <ProtectedRoute path="/dashboard" component={Dashboard} />
-            <ProtectedRoute path="/protected" component={Protected} />
+            <ProtectedRoute path='/dashboard' redirectTo='/login' component={Dashboard} />
+            <Route path='/login' component={LoginPage} />
             <Route component={NotFound} />
           </Switch>
         </ConnectedRouter>

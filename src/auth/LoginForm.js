@@ -21,7 +21,7 @@ class LoginFormNormal extends Component {
         <Col span={4}>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <FormItem>
-              {getFieldDecorator('email', {
+              {getFieldDecorator('username', {
                 rules: [{ required: true, message: 'Задължително поле!' }],
               })(
                 <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Email" autoComplete="username"/>
