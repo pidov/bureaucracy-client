@@ -12,7 +12,7 @@ export class LoginPageNormal extends Component {
 
     return (
       <div style={{height: '100%'}}>
-        <LoginForm onSubmit={this.props.LOGIN} formError={loginFormError} />
+        <LoginForm onSubmit={this.props.LOG_IN} formError={loginFormError} />
         {isAuthorized && <Redirect to={from} />}
       </div>
     )

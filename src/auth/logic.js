@@ -2,21 +2,20 @@ import { createLogic } from 'redux-logic'
 import { types } from './auth'
 import Api from '../api'
 
-const validationLogic = createLogic({
-  type: types.LOGIN,
+const logInLogic = createLogic({
+  type: types.LOG_IN,
   process ({ getState, action }, dispatch, done) {
     Api.authorize(action.payload)
       .then(({token}) => {
-        console.log(token)
         localStorage.setItem('token', token)
         dispatch({
-          type: types.LOGIN_SUCCESS,
+          type: types.LOG_IN_SUCCESS,
           payload: token
         })
       })
       .catch(error => {
         dispatch({
-          type: types.LOGIN_ERROR,
+          type: types.LOG_IN_ERROR,
           payload: error
         })
       })
@@ -24,18 +23,16 @@ const validationLogic = createLogic({
   }
 })
 
-// const vacationRequestLogic = createLogic({
-//   type: types.TEST,
-//   process ({ getState, action }, dispatch, done) {
-//     Api.requestLeave()
-//       .then(response => console.log(response))
-//       .catch(console.error)
-//       .then(done())
-//   }
-// })
+const logOutLogic = createLogic({
+  type: types.LOG_OUT,
+  process ({ getState, action }, dispatch, done) {
+    localStorage.removeItem('token')
+    done()
+  }
+})
 
 // pollsLogic
 export default [
-  validationLogic
-  // vacationRequestLogic
+  logInLogic,
+  logOutLogic
 ]

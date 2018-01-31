@@ -4,37 +4,45 @@ import { createSelector } from 'reselect'
 import Immutable from 'seamless-immutable'
 
 export const types = {
-  LOGIN: 'auth/LOGIN',
-  LOGIN_SUCCESS: 'auth/LOGIN_SUCCESS',
-  LOGIN_ERROR: 'auth/LOGIN_ERROR'
+  LOG_IN: 'auth/LOG_IN',
+  LOG_IN_SUCCESS: 'auth/LOG_IN_SUCCESS',
+  LOG_IN_ERROR: 'auth/LOG_IN_ERROR',
+  LOG_OUT: 'auth/LOG_OUT'
 }
 
 export const actions = createActions(types)
 
 export const initialState = {
-  isAuthenticated: false, // !!localStorage.getItem('token'),
+  isAuthenticated: !!localStorage.getItem('token'),
   isFetching: false,
   errorMessage: ''
 }
 
 export default handleActions({
-  [types.LOGIN_SUCCESS]: (state) => {
+  [types.LOG_IN]: (state) => {
+    return state.merge({
+      isFetching: true
+    })
+  },
+  [types.LOG_IN_SUCCESS]: (state) => {
     return state.merge({
       isAuthenticated: true,
       isFetching: false,
       errorMessage: ''
     })
   },
-  [types.LOGIN]: (state) => {
-    return state.merge({
-      isFetching: true
-    })
-  },
-  [types.LOGIN_ERROR]: (state, {payload}) => {
+  [types.LOG_IN_ERROR]: (state, {payload}) => {
     return state.merge({
       isAuthenticated: false,
       isFetching: false,
       errorMessage: payload.message
+    })
+  },
+  [types.LOG_OUT]: (state) => {
+    return state.merge({
+      isFetching: false,
+      isAuthenticated: false,
+      errorMessage: ''
     })
   }
 }, Immutable(initialState))
