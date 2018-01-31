@@ -6,12 +6,14 @@ import { selectors } from './auth'
 class ProtectedRouteNormal extends Component {
   render () {
     const { props } = this
-    const { component: Component, isAuthorized, redirectTo, ...rest } = props
+    const { component: Component, isAuthorized, redirectTo, layout: Layout, ...rest } = props
 
     return (
       <Route {...rest} render={routeProps => (
         isAuthorized ? (
-          <Component {...routeProps} />
+          <Layout>
+            <Component {...routeProps} />
+          </Layout>
         ) : (
           <Redirect to={{
             pathname: redirectTo,

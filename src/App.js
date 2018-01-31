@@ -5,6 +5,7 @@ import createHistory from 'history/createBrowserHistory'
 import { ConnectedRouter } from 'react-router-redux'
 
 import { ProtectedRoute, LoginPage } from './auth'
+import { LoAPage } from './loa'
 import { Dashboard } from './Dashboard'
 import configureStore from './store/createStore'
 
@@ -23,9 +24,9 @@ class AuthExample extends Component {
         <ConnectedRouter history={history} >
           <Switch>
             <Route exact path='/'>
-              <Redirect to='/dashboard' />
+              <Redirect to='/loa' />
             </Route>
-            <ProtectedRoute path='/dashboard' redirectTo='/login' component={Dashboard} />
+            <ProtectedRoute path='/loa' redirectTo='/login' layout={Dashboard} component={LoAPage} />
             <Route path='/login' component={LoginPage} />
             <Route component={NotFound} />
           </Switch>

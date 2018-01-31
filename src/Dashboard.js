@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Layout, Menu, Button } from 'antd'
 import { actions, selectors } from './auth/auth'
+import { Link } from 'react-router-dom'
 
 const { Header, Footer } = Layout
 export class DashboardNormal extends Component {
@@ -10,15 +11,10 @@ export class DashboardNormal extends Component {
     return (
       <Layout className="layout">
         <Header>
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={['2']}
-            style={{ lineHeight: '64px', float: 'left' }}
-          >
-            <Menu.Item key="1">nav 1</Menu.Item>
-            <Menu.Item key="2">nav 2</Menu.Item>
-            <Menu.Item key="3">nav 3</Menu.Item>
+          <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px', float: 'left' }} >
+            <Menu.Item key="1">
+              <Link to='/loa'>Request Leave</Link>
+            </Menu.Item>
           </Menu>
           <Button
             onClick={this.props.LOG_OUT}
@@ -28,6 +24,9 @@ export class DashboardNormal extends Component {
             Log out
           </Button>
         </Header>
+        <div>
+          {this.props.children}
+        </div>
         <Footer style={{ textAlign: 'center' }}>
           Tick42 ©2018
         </Footer>
@@ -37,10 +36,7 @@ export class DashboardNormal extends Component {
 }
 
 export const Dashboard = connect(
-  state => ({
-    isAuthorized: selectors.isAuthorized(state),
-    loginFormError: selectors.loginFormError(state)
-  }),
+  state => ({}),
   dispatch => ({
     ...bindActionCreators(actions, dispatch)
   })

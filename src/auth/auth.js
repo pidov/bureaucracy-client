@@ -7,7 +7,8 @@ export const types = {
   LOG_IN: 'auth/LOG_IN',
   LOG_IN_SUCCESS: 'auth/LOG_IN_SUCCESS',
   LOG_IN_ERROR: 'auth/LOG_IN_ERROR',
-  LOG_OUT: 'auth/LOG_OUT'
+  LOG_OUT: 'auth/LOG_OUT',
+  RESET: 'auth/RESET'
 }
 
 export const actions = createActions(types)
@@ -21,7 +22,9 @@ export const initialState = {
 export default handleActions({
   [types.LOG_IN]: (state) => {
     return state.merge({
-      isFetching: true
+      isAuthenticated: false,
+      isFetching: true,
+      errorMessage: ''
     })
   },
   [types.LOG_IN_SUCCESS]: (state) => {
@@ -39,6 +42,13 @@ export default handleActions({
     })
   },
   [types.LOG_OUT]: (state) => {
+    return state.merge({
+      isFetching: false,
+      isAuthenticated: false,
+      errorMessage: ''
+    })
+  },
+  [types.RESET]: (state) => {
     return state.merge({
       isFetching: false,
       isAuthenticated: false,
