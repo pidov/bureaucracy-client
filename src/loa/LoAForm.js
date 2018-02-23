@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Form, Icon, Input, Button, Row, Col, Alert, DatePicker, Radio } from 'antd'
+import { Form, Icon, Input, Button, Row, Col, Alert, DatePicker, Radio, Select } from 'antd'
 import PropTypes from 'prop-types'
 
+const { Option } = Select
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const RangePicker = DatePicker.RangePicker
@@ -28,15 +29,38 @@ class LoAFormNormal extends Component {
             initialValue: 'paid',
           })(
             <RadioGroup style={{width: '100%'}}>
-              <RadioButton key="paid" value='paid'>Платен</RadioButton>
-              <RadioButton key="unpaid" value='unpaid'>Неплатен</RadioButton>
-              <RadioButton key="sick" value='sick' disabled>По болест</RadioButton>
+              <RadioButton key="paid" value='paid'>Paid</RadioButton>
+              <RadioButton key="unpaid" value='unpaid'>Unpaid</RadioButton>
+              <RadioButton key="sick" value='sick' disabled>Sick</RadioButton>
             </RadioGroup>
           )}
         </FormItem>
         <FormItem>
+          {getFieldDecorator('fullName', {
+            rules: [{ type: 'string', required: true, message: 'Required field!' }]
+          })(
+            <Input placeholder="Full name" />
+          )}
+        </FormItem>
+        <FormItem>
+          {getFieldDecorator('occupation', {
+            initialValue: 'developer',
+            rules: [{ type: 'string', required: true, message: 'Required field!' }]
+          })(
+            <Select>
+              <Option value="developer">Програмист</Option>
+              <Option value="developerLead">Ръководител екип програмисти</Option>
+              <Option value="devOps">Експерт, системно осигуряване</Option>
+              <Option value="qaLead">Ръководител, качество</Option>
+              <Option value="administrativeAssistant">Административен асистент</Option>
+              <Option value="projectCoordinator">Координатор проекти</Option>
+              <Option value="webDesigner">Уеб дизайнер</Option>
+            </Select>
+          )}
+        </FormItem>
+        <FormItem>
           {getFieldDecorator('dates', {
-            rules: [{ type: 'array', required: true, message: 'Задължително поле!' }],
+            rules: [{ type: 'array', required: true, message: 'Required field!' }],
           })(
             <RangePicker />
           )}
@@ -45,9 +69,14 @@ class LoAFormNormal extends Component {
           <Alert message={formError} type="error" />
         </FormItem>)}
         <FormItem>
-          <Button type="primary" htmlType="submit" className="login-form-button">
-            Изпрати
-          </Button>
+          <Button.Group>
+            <Button type="primary" htmlType="submit" className="login-form-button" value='submit'>
+              Submit
+            </Button>
+            <Button type="primary" className="login-form-button" onClick={this.handleDownload}>
+              Download
+            </Button>
+          </Button.Group>
         </FormItem>
       </Form>
     );

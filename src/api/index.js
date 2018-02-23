@@ -2,7 +2,7 @@ import { callApi } from './fetch'
 
 export default class Api {
   static authorize (credentials) {
-    return callApi('http://localhost:5000/login', {
+    return callApi('http://localhost:5000/api/authorize', {
       method: 'POST',
       body: JSON.stringify(credentials)
     }, false)
